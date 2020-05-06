@@ -15,6 +15,9 @@ const reducer = (state, action) => {
 export const CurrentPathContext = createContext()
 
 export const CurrentPathProvider = ({children}) => {
+	// !!!! ON! in ../../plugins/gatsby-plugin-top-layout/gatsby-browser.js
+	// as Top-Level component !!!!
+
 	const value = useReducer(reducer, initialState, undefined);
 
 	return (

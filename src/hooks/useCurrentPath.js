@@ -6,7 +6,6 @@ export default (newPath) => {
 	const [value, setValue] = useState(newPath || currentPath)
 
 	useEffect(()=>{
-		console.log('USEPATH!!!!')
 		if (currentPath === newPath) {
 			return
 		}

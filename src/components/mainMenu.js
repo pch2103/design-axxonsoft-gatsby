@@ -7,7 +7,7 @@ import Link from "./Link";
 import {CurrentPathContext} from "../context/currentPath";
 
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
 		root: {
 			flexGrow: 1,
 		},
@@ -16,7 +16,6 @@ const useStyles = makeStyles((theme) => ({
 const MainMenu = () => {
 	const classes = useStyles();
 	const [{currentPath},  ] = useContext(CurrentPathContext)
-	console.log('STATE MENU', currentPath)
 
 	return (
 				<Paper className={classes.menu}>
