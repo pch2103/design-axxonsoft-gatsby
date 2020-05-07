@@ -1,3 +1,7 @@
+if (process.env.NODE_ENV === "development") {
+  require("dotenv").config();
+}
+
 module.exports = {
   plugins: [
     'gatsby-plugin-top-layout',
@@ -23,6 +27,13 @@ module.exports = {
         background_color: `#fff`,
         theme_color: `#fff`,
         display: `standalone`,
+      },
+    },
+    {
+      resolve: `gatsby-source-contentful`,
+      options: {
+        spaceId: process.env.CONTENTFUL_SPACE_ID,
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
       },
     },
   ],
