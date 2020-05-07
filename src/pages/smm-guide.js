@@ -8,16 +8,16 @@ import Layout from "../components/layout";
 import SEO from "../components/seo";
 import useCurrentPath from "../hooks/useCurrentPath";
 
-export default function News({location}) {
+export default function ({location}) {
 	useCurrentPath(location.pathname)
 
 	return (
 			<Layout>
-				<SEO title={'News'}/>
+				<SEO title={'SMM guide'}/>
 				<Container maxWidth="sm">
 					<Box my={4}>
 						<Typography variant="h4" component="h1" gutterBottom>
-							News Page
+							SMM Guide Page
 						</Typography>
 						<Link to="/">Go to the main page</Link>
 						<ProTip/>

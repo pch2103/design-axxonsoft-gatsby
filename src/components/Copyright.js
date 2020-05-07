@@ -7,10 +7,9 @@ export default function Copyright() {
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
       {new Date().getFullYear()}
-      {' Build with '}
-      <MuiLink color="inherit" href="https://www.gatsbyjs.org">
-        Gatsby
-      </MuiLink>{' '}
+      <MuiLink color="inherit" href="https://www.axxonsoft.org">
+        {' AxxonSoft.'}
+      </MuiLink>{' Powered by Gatsby'}
     </Typography>
   );
 }
