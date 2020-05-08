@@ -1,13 +1,12 @@
 import React from 'react';
-import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
 import ProTip from '../components/ProTip';
 import Link from '../components/Link';
 import TestMaterial from "../components/testMaterial";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 import useCurrentPath from "../hooks/useCurrentPath";
+import DummyText from "../components/dummyText";
 
 export default function Index({location}) {
 	useCurrentPath(location.pathname)
@@ -15,8 +14,6 @@ export default function Index({location}) {
 	return (
 	    <Layout>
 				<SEO title={'Brand Identity'}/>
-				<Container maxWidth="sm">
-					<Box my={4}>
 						<Typography variant="h4" component="h1" gutterBottom>
 							Home page
 						</Typography>
@@ -25,8 +22,7 @@ export default function Index({location}) {
 						</Link>
 						<ProTip/>
 						<TestMaterial/>
-					</Box>
-				</Container>
+					<DummyText />
 			</Layout>
 	);
 }

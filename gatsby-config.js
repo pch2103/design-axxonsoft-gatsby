@@ -20,8 +20,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Gatsby-Material-io`,
-        short_name: `GatsbyMaterial`,
+        name: `Axxonsoft Design`,
+        short_name: `Axxonsoft`,
         start_url: `/`,
         icon: `src/images/favicon.png`,
         background_color: `#fff`,
@@ -36,10 +36,19 @@ module.exports = {
         accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
       },
     },
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `images`,
+        path: `${__dirname}/src/images/`,
+      },
+    },
   ],
   siteMetadata: {
-    title: 'GatsbyMaterial',
-    description: `GatsbyMaterial`,
+    title: 'Axxonsoft Design',
+    description: `Axxonsoft Design materials`,
     author: `@CHE`,
   },
 };

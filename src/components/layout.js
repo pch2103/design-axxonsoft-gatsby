@@ -1,6 +1,8 @@
 import React from "react"
-import MainMenu from "./mainMenu";
+import MainMenu from "./mainMenu/mainMenu";
 import Copyright from "./Copyright";
+import Container from "@material-ui/core/Container";
+import Box from "@material-ui/core/Box";
 
 const Layout = ({ children }) => {
 
@@ -14,7 +16,11 @@ const Layout = ({ children }) => {
 							padding: `0 1.0875rem 1.45rem`,
 						}}
 				>
-					<main>{children}</main>
+					<Container>
+						<Box my={12}>
+						{children}
+						</Box>
+					</Container>
 					<footer>
 						<Copyright/>
 					</footer>

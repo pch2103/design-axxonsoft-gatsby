@@ -1,8 +1,8 @@
 import {useContext, useEffect, useState} from 'react';
-import {CurrentPathContext} from "../context/currentPath";
+import {MainMenuContext} from "../context/mainMenu";
 
 export default (newPath) => {
-	const [{currentPath}, dispatch] = useContext(CurrentPathContext)
+	const [{currentPath}, dispatch] = useContext(MainMenuContext)
 	const [value, setValue] = useState(newPath || currentPath)
 
 	useEffect(()=>{

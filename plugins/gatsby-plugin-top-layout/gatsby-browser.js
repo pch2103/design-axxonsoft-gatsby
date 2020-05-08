@@ -1,14 +1,14 @@
 /* eslint-disable import/prefer-default-export, react/prop-types */
 import React from 'react';
 import TopLayout from './TopLayout';
-import {CurrentPathProvider} from "../../src/context/currentPath";
+import {MainMenuProvider} from "../../src/context/mainMenu";
 
 export const wrapRootElement = ({element}) => {
 	return (
   <TopLayout>
-		<CurrentPathProvider>
+		<MainMenuProvider>
 			{element}
-		</CurrentPathProvider>
+		</MainMenuProvider>
 	</TopLayout>
   )
 };
