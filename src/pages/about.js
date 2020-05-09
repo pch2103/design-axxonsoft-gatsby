@@ -4,10 +4,8 @@ import ProTip from '../components/ProTip';
 import Link from '../components/Link';
 import Layout from "../components/layout";
 import SEO from "../components/seo";
-import useCurrentPath from "../hooks/useCurrentPath";
 
-export default function About({location}) {
-	useCurrentPath(location.pathname)
+export default function About() {
 
 	return (
 			<Layout>

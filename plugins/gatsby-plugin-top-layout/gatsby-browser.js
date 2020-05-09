@@ -5,10 +5,10 @@ import {MainMenuProvider} from "../../src/context/mainMenu";
 
 export const wrapRootElement = ({element}) => {
 	return (
-  <TopLayout>
 		<MainMenuProvider>
+			<TopLayout>
 			{element}
+			</TopLayout>
 		</MainMenuProvider>
-	</TopLayout>
   )
 };

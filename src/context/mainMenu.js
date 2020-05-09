@@ -2,7 +2,8 @@ import React, {createContext, useReducer} from "react";
 
 const initialState = {
 	currentPath: '/',
-	language: 'EN'
+	language: 'EN',
+	themeMode: 'light',
 }
 const reducer = (state, action) => {
 	switch (action.type) {
@@ -10,7 +11,8 @@ const reducer = (state, action) => {
 			return {...state, currentPath: action.payload}
 		case 'SET_LANGUAGE':
 			return {...state, language: action.payload}
-
+		case 'SET_THEME':
+			return {...state, themeMode: action.payload}
 		default: return state
 	}
 }

@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import PropTypes from 'prop-types';
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import Tab from "@material-ui/core/Tab";
@@ -11,10 +11,11 @@ import Slide from '@material-ui/core/Slide';
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 import Favicon from "./favicon";
 import ChangeLanguage from "./changeLanguage";
 import Hidden from "@material-ui/core/Hidden";
+import SideDrawer from "../sideDrawer/sideDrawer";
+import GetIcon from "../utils/getIcon";
 
 function HideOnScroll(props) {
 	const {children, window} = props;
@@ -45,7 +46,7 @@ const useStyles = makeStyles((theme) => (
 				flexGrow: 1,
 			},
 			menuButton: {
-				marginRight: theme.spacing(2),
+				marginRight: theme.spacing(0),
 			},
 			tab: {
 				[theme.breakpoints.down('xs')]: {
@@ -81,22 +82,41 @@ const MainMenu = () => {
   `)
 	const mainMenu = data.allContentfulMainMenu.edges
 	const classes = useStyles();
-	const [{currentPath, language}] = useContext(MainMenuContext)
+	const [{currentPath, language, themeMode}, dispatch] = useContext(MainMenuContext)
+	const [drawer, setDrawer] = useState(false);
 
+	const toggleDrawer = (open) => (event) => {
+		if (event.type === 'keydown' && (
+				event.key === 'Tab' || event.key === 'Shift')) {
+			return;
+		}
+		setDrawer(open);
+	}
 
 	return (
+			<>
+			<SideDrawer
+					drawer={drawer}
+					toggleDrawer={toggleDrawer}
+					mainMenu = {mainMenu}
+					language = {language}
+			/>
 			<HideOnScroll>
 				<AppBar className={classes.root}>
 					<Toolbar variant="dense">
 						<Hidden smUp>
-							<IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-								<MenuIcon/>
+							<IconButton
+									edge="start"
+									onClick={toggleDrawer(true)}
+									className={classes.menuButton}
+									color="inherit"
+									aria-label="menu">
+								<GetIcon icon='Burger'/>
 							</IconButton>
 						</Hidden>
 						<Link className={classes.logo} to="/">
 							<Favicon/>
 						</Link>
-						{/*<Hidden xsDown>*/}
 							<Tabs
 									value={currentPath}
 									aria-label="simple tabs example"
@@ -107,7 +127,6 @@ const MainMenu = () => {
 							>
 
 								{mainMenu && mainMenu
-										.reverse()
 										.sort((a, b) => a.node.order - b.node.order)
 										.map(menuItem => (
 												<Tab
@@ -122,11 +141,24 @@ const MainMenu = () => {
 								}
 
 							</Tabs>
-						{/*</Hidden>*/}
+
+						<IconButton
+								edge="start"
+								onClick={() => {
+									themeMode === 'light'
+											? dispatch({type: 'SET_THEME', payload: 'dark'})
+											: dispatch({type: 'SET_THEME', payload: 'light'})
+								}}
+								className={classes.menuButton}
+								color="inherit"
+								aria-label="theme">
+							<GetIcon icon={themeMode === 'light' ? 'Night' : 'Day'}/>
+						</IconButton>
 						<ChangeLanguage/>
 					</Toolbar>
 				</AppBar>
 			</HideOnScroll>
+				</>
 	)
 }
 
