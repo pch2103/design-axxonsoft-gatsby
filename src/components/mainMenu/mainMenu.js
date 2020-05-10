@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useMemo, useState} from 'react';
 import PropTypes from 'prop-types';
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import Tab from "@material-ui/core/Tab";
@@ -38,6 +38,7 @@ const useStyles = makeStyles((theme) => (
 		{
 			root: {
 				flexGrow: 1,
+				background: theme.palette.menu.main,
 			},
 			tabs: {
 				flexGrow: 1,
@@ -55,7 +56,7 @@ const useStyles = makeStyles((theme) => (
 				padding: theme.spacing(2),
 				color: theme.palette.primary.contrastText,
 				'&:hover': {
-					background: theme.palette.primary.light,
+					background: 'rgba(255, 255, 255, 0.12)',
 					transition: 'background 0.3s',
 					textDecoration: 'none',
 				},
@@ -66,7 +67,12 @@ const MainMenu = () => {
 
 	const data = useStaticQuery(graphql`
    query {
-      allContentfulMainMenu {
+      allContentfulMainMenu(
+    		sort: {
+      		fields: [order]
+      		order: ASC
+    		}
+  		){
         edges {
           node {
             id
@@ -80,7 +86,11 @@ const MainMenu = () => {
       }
     },
   `)
-	const mainMenu = data.allContentfulMainMenu.edges
+	// OPTIMIZED! Memorized (cashed) value returned
+	const mainMenu = useMemo(() => (
+			data.allContentfulMainMenu.edges
+	), [ data ])
+
 	const classes = useStyles();
 	const [{currentPath, language, themeMode}, dispatch] = useContext(MainMenuContext)
 	const [drawer, setDrawer] = useState(false);
@@ -127,7 +137,6 @@ const MainMenu = () => {
 							>
 
 								{mainMenu && mainMenu
-										.sort((a, b) => a.node.order - b.node.order)
 										.map(menuItem => (
 												<Tab
 														key={menuItem.node.id}
