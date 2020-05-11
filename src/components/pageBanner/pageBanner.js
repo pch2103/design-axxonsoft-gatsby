@@ -54,15 +54,17 @@ const PageBanner = ({currentPageUrl}) => {
       }
     }
   `)
+
+	const banner = useMemo(() => (
+			data.allContentfulMainBanner.edges
+					.find(({node}) => currentPageUrl === node.pageUrl)
+	), [data, currentPageUrl])
+
 	const classes = useStyles();
 	const [{language}, ] = useContext(MainMenuContext)
 
 	// OPTIMIZED! Memorized (cashed) value returned
-	const banner = useMemo(() => (
-			data.allContentfulMainBanner.edges.find(({node}) => currentPageUrl === node.pageUrl)
-	), [data, currentPageUrl])
 
-	console.log('BANNER', banner)
 
 	return (
 			<Box className={classes.root}>
