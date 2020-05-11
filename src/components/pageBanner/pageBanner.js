@@ -64,7 +64,6 @@ const PageBanner = ({currentPageUrl}) => {
 	const classes = useStyles();
 	const [{language}, ] = useContext(MainMenuContext)
 
-
 	if (!banner || !banner.node) return null
 
 	return (

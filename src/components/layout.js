@@ -5,7 +5,6 @@ import MainMenu from "./mainMenu/mainMenu";
 import Copyright from "./Copyright";
 import CssBaseline from "@material-ui/core/CssBaseline";
 
-
 const Layout = ({ children }) => {
 
 	return (

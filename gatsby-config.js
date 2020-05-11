@@ -1,6 +1,6 @@
-if (process.env.NODE_ENV === "development") {
+// if (process.env.NODE_ENV === "development") {
   require("dotenv").config();
-}
+// }
 
 module.exports = {
   plugins: [
@@ -24,7 +24,7 @@ module.exports = {
         short_name: `Axxonsoft`,
         start_url: `/`,
         icon: `src/images/favicon.png`,
-        background_color: `#fff`,
+        background_color: `#ffffff`,
         theme_color: `#fff`,
         display: `standalone`,
       },

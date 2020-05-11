@@ -1,10 +1,10 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import {MainMenuContext} from "../../context/mainMenu";
 import makeStyles from "@material-ui/core/styles/makeStyles";
-
+import useLocalStorage from "../../hooks/useLocalStorage";
 
 const useStyles = makeStyles((theme) => (
 		{
@@ -12,8 +12,8 @@ const useStyles = makeStyles((theme) => (
 				color: theme.palette.primary.contrastText,
 				padding: theme.spacing(2),
 				'&:hover': {
-					background: theme.palette.primary.light,
-					transition: 'background 0.4s',
+					background: 'rgba(255, 255, 255, 0.12)',
+					transition: 'background 0.3s',
 					textDecoration: 'none',
 				},
 			},
@@ -21,8 +21,16 @@ const useStyles = makeStyles((theme) => (
 
 export default function ChangeLanguage() {
 	const classes = useStyles();
+	const [storedLanguage, setStoredLanguage] = useLocalStorage('language')
 	const [{language}, dispatch] = useContext(MainMenuContext)
 	const [anchorEl, setAnchorEl] = React.useState(null);
+
+	useEffect(() => {
+		if(!storedLanguage){
+			setStoredLanguage('EN')
+		}
+		dispatch({type: 'SET_LANGUAGE', payload: storedLanguage})
+	},[storedLanguage, setStoredLanguage, dispatch])
 
 	const handleClick = (event) => {
 		setAnchorEl(event.currentTarget);
@@ -31,8 +39,8 @@ export default function ChangeLanguage() {
 	const handleClose = (event) => {
 		const { setLanguage } = event.currentTarget.dataset
 		setAnchorEl(null);
-		if(setLanguage && setLanguage !== language) {
-			dispatch({type: 'SET_LANGUAGE', payload: setLanguage})
+		if(setLanguage && setLanguage !== storedLanguage) {
+			setStoredLanguage(setLanguage)
 		}
 	};
 

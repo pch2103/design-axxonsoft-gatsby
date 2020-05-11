@@ -1,4 +1,4 @@
-import React, {useContext, useMemo, useState} from 'react';
+import React, {useContext, useEffect, useMemo, useState} from 'react';
 import PropTypes from 'prop-types';
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import Tab from "@material-ui/core/Tab";
@@ -16,6 +16,7 @@ import ChangeLanguage from "./changeLanguage";
 import Hidden from "@material-ui/core/Hidden";
 import SideDrawer from "../sideDrawer/sideDrawer";
 import GetIcon from "../utils/getIcon";
+import useLocalStorage from "../../hooks/useLocalStorage";
 
 function HideOnScroll(props) {
 	const {children, window} = props;
@@ -92,8 +93,17 @@ const MainMenu = () => {
 	), [ data ])
 
 	const classes = useStyles();
-	const [{currentPath, language, themeMode}, dispatch] = useContext(MainMenuContext)
+	const [storedTheme, setStoredTheme] = useLocalStorage('theme')
+	const [{currentPath, language}, dispatch] = useContext(MainMenuContext)
 	const [drawer, setDrawer] = useState(false);
+
+	useEffect(()=>{
+		if(!storedTheme){
+			setStoredTheme('light')
+			return
+		}
+		dispatch({type:'SET_THEME', payload: storedTheme})
+	},[storedTheme, setStoredTheme, dispatch])
 
 	const toggleDrawer = (open) => (event) => {
 		if (event.type === 'keydown' && (
@@ -101,6 +111,10 @@ const MainMenu = () => {
 			return;
 		}
 		setDrawer(open);
+	}
+
+	const toggleTheme = () => {
+		storedTheme === 'light' ?	setStoredTheme('dark') : setStoredTheme('light')
 	}
 
 	return (
@@ -150,18 +164,13 @@ const MainMenu = () => {
 								}
 
 							</Tabs>
-
 						<IconButton
 								edge="start"
-								onClick={() => {
-									themeMode === 'light'
-											? dispatch({type: 'SET_THEME', payload: 'dark'})
-											: dispatch({type: 'SET_THEME', payload: 'light'})
-								}}
+								onClick={()=>{toggleTheme()}}
 								className={classes.menuButton}
 								color="inherit"
 								aria-label="theme">
-							<GetIcon icon={themeMode === 'light' ? 'Night' : 'Day'}/>
+							<GetIcon icon={storedTheme === 'light' ? 'Night' : 'Day'}/>
 						</IconButton>
 						<ChangeLanguage/>
 					</Toolbar>
