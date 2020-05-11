@@ -62,7 +62,9 @@ const PageBanner = ({currentPageUrl}) => {
 	), [data, currentPageUrl])
 
 	const classes = useStyles();
+	// const [language] = useLocalStorage('language')
 	const [{language}, ] = useContext(MainMenuContext)
+	console.log('LANGUAGE', language)
 
 	if (!banner || !banner.node) return null
 

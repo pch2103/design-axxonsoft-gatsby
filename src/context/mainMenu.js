@@ -2,8 +2,8 @@ import React, {createContext, useReducer} from "react";
 
 const initialState = {
 	currentPath: '/',
-	language: 'EN',
-	themeMode: 'light',
+	language: '',
+	themeMode: '',
 }
 const reducer = (state, action) => {
 	switch (action.type) {
