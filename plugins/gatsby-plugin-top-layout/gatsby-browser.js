@@ -7,7 +7,7 @@ export const wrapRootElement = ({element}) => {
 	return (
 		<MainMenuProvider>
 			<TopLayout>
-			{element}
+			  {element}
 			</TopLayout>
 		</MainMenuProvider>
   )
