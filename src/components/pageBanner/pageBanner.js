@@ -55,6 +55,7 @@ const PageBanner = ({currentPageUrl}) => {
     }
   `)
 
+	// OPTIMIZED! Memorized (cashed) value returned
 	const banner = useMemo(() => (
 			data.allContentfulMainBanner.edges
 					.find(({node}) => currentPageUrl === node.pageUrl)
@@ -63,13 +64,13 @@ const PageBanner = ({currentPageUrl}) => {
 	const classes = useStyles();
 	const [{language}, ] = useContext(MainMenuContext)
 
-	// OPTIMIZED! Memorized (cashed) value returned
 
+	if (!banner || !banner.node) return null
 
 	return (
 			<Box className={classes.root}>
 				<Container maxWidth="sm">
-						{/*<img className={classes.logo} src={banner.node.icon.file.url} alt={'page icon'}/>*/}
+					<img className={classes.logo} src={banner.node.icon.file.url} alt={'page icon'}/>
 					<Typography variant="h5" className={classes.header}>
 						{language === 'EN' ? banner.node.titleEN : banner.node.titleRU}
 					</Typography>
