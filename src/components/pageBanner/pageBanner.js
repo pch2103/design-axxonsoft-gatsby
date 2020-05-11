@@ -63,10 +63,9 @@ const PageBanner = ({currentPageUrl}) => {
 
 	const classes = useStyles();
 	const [{language}, ] = useContext(MainMenuContext)
-	// console.log('LANGUAGE', language)
+	console.log('LANGUAGE', language)
 
-	if (!banner || !banner.node || !language) return null
-  console.log('LANGUAGE', language)
+	if (!banner || !banner.node ) return null
 	return (
 			<Box className={classes.root}>
 				<Container maxWidth="sm">
