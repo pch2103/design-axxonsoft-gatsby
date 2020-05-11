@@ -5,10 +5,9 @@ import Category from "@material-ui/icons/Category";
 import LocalLibrary from "@material-ui/icons/LocalLibrary";
 import Widgets from "@material-ui/icons/Widgets";
 import ImportantDevices from "@material-ui/icons/ImportantDevices";
-import Day from "@material-ui/icons/wbSunny";
-import Night from "@material-ui/icons/brightness4";
+import Day from '@material-ui/icons/WbSunny';
+import Night from "@material-ui/icons/Brightness4";
 import Burger from "@material-ui/icons/Menu";
-
 
 const GetIcon = ({icon}) => {
 	switch (icon) {
@@ -23,6 +22,5 @@ const GetIcon = ({icon}) => {
 		default: return <Done />
 	}
 };
-
 
 export default GetIcon;
