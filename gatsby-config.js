@@ -1,6 +1,6 @@
-// if (process.env.NODE_ENV === "development") {
+if (process.env.NODE_ENV === "development") {
   require("dotenv").config();
-// }
+}
 
 module.exports = {
   plugins: [
@@ -20,8 +20,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Axxonsoft Design`,
-        short_name: `Axxonsoft`,
+        name: `Axxonsoft Ltd. Design Materials`,
+        short_name: `Axxonsoft Ltd.`,
         start_url: `/`,
         icon: `src/images/favicon.png`,
         background_color: `#ffffff`,
