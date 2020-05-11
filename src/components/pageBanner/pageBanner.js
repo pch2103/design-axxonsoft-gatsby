@@ -69,9 +69,7 @@ const PageBanner = ({currentPageUrl}) => {
 	return (
 			<Box className={classes.root}>
 				<Container maxWidth="sm">
-					{banner.node.icon &&
 						<img className={classes.logo} src={banner.node.icon.file.url} alt={'page icon'}/>
-					}
 					<Typography variant="h5" className={classes.header}>
 						{language === 'EN' ? banner.node.titleEN : banner.node.titleRU}
 					</Typography>
