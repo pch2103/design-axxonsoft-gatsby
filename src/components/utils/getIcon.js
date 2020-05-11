@@ -21,6 +21,6 @@ const GetIcon = ({icon}) => {
 		case 'Burger': return <Burger />
 		default: return <Done />
 	}
-};
+}
 
 export default GetIcon;
